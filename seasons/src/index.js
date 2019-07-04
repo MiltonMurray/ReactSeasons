@@ -1,37 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
 
 
 class App extends React.Component{
-    // eslint-disable-next-line no-useless-constructor
-    constructor(props){
-        super(props);
-
-        //THIS IS THE ONLY TIME TO DO DIRECT ASSIGNMENT TO THIS.STATE
-        this.state = { lat: null, errorMessage:''};
-
-        window.navigator.geolocation.getCurrentPosition((position)=>{
-            //We called setState
-            this.setState({lat: position.coords.latitude});
-        }, (err) => {
-            this.setState({errorMessage: err.message});
-        });
-    }
+    state = {lat: null, errorMessage:''};
 
     componentDidMount(){
-        console.log('my component was rendered to the screen');
+        window.navigator.geolocation.getCurrentPosition(
+            (position) => this.setState({lat: position.coords.latitude}), 
+            (err) => this.setState({errorMessage: err.message})
+            );
     }
-
-    componentDidUpdate(){
-        console.log('My component just update, it re rendered.')
-    }
+    
     render(){ 
         if(this.state.errorMessage && !this.state.lat){
             return <div>Error: {this.state.errorMessage}</div>;
         }  
 
         if(!this.state.errorMessage && this.state.lat){
-            return <div>latitude: {this.state.lat}</div>;
+            return <SeasonDisplay lat={this.state.lat}/>;
         }  
         
         return <div>Loading!</div>;
