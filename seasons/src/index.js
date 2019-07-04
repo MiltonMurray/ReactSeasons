@@ -22,7 +22,9 @@ class App extends React.Component{
             return <SeasonDisplay lat={this.state.lat}/>;
         }  
         
-        return <div>Loading!</div>;
+        return (
+            <div className="ui active centered inline loader"></div>
+        );
     }
 }
 
