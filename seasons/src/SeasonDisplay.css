@@ -9,3 +9,23 @@
     bottom: 10px;
     right: 10px;
 }
+
+.season-display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.season-display.winter i{
+    color: blue;
+}
+.season-display.summer i{
+    color: orangered;
+}
+.winter{
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.507), rgb(78, 91, 214));
+}
+
+.summer{
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.507), orange);
+}
